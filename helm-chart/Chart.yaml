@@ -1,0 +1,22 @@
+name: external-secrets
+home: https://github.com/external-secrets/external-secrets
+sources: []
+version: 0.10.5
+description: External secret management for Kubernetes
+keywords:
+    - kubernetes-external-secrets
+    - secrets
+maintainers:
+    - name: mcavoyk
+      email: kellinmcavoy@gmail.com
+      url: ""
+icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+apiversion: v2
+condition: ""
+tags: ""
+appversion: v0.10.5
+deprecated: false
+annotations: {}
+kubeversion: '>= 1.19.0-0'
+dependencies: []
+type: application

@@ -1,0 +1,11 @@
+/*.tgz
+output
+ci/
+*.gotmpl
+
+.git/
+.terraform/
+bin/
+test/
+crds/kustomization.yaml
+.terragrunt-source-manifest
