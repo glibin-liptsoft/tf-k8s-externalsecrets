@@ -8,11 +8,11 @@ output "acount_key" {
 }
 
 output "lockbox_secretStore_name" {
-  value = var.cluster_secret_store_yandexlockbox == false ? "false" : kubernetes_manifest.cluster_secret_store_yandexlockbox[0].manifest.metadata.name
+  value = var.cluster_secret_store_yandexlockbox == true ? kubernetes_manifest.cluster_secret_store_yandexlockbox[0].manifest.metadata.name : "false"
 }
 
 output "certificate_secretStore_name" {
-  value = var.cluster_secret_store_yandexcertificate == false ? "false" : kubernetes_manifest.cluster_secret_store_yandexcertificatemanager[0].manifest.metadata.name
+  value = var.cluster_secret_store_yandexcertificate == true ? kubernetes_manifest.cluster_secret_store_yandexcertificatemanager[0].manifest.metadata.name : "false"
 }
 
 output "vault_approle_secretStore_name" {

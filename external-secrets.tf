@@ -16,7 +16,7 @@ resource "helm_release" "this" {
   set_sensitive = [
     {
       name  = "auth.json"
-      value = var.cluster_secret_store_yandexlockbox == false || var.cluster_secret_store_yandexcertificate == false ? "none" : "${base64encode(local.service_account_key)}"
+      value = var.cluster_secret_store_yandexlockbox == true || var.cluster_secret_store_yandexcertificate == true ? "${base64encode(local.service_account_key)}" : "none"
     }
   ]
 
@@ -36,7 +36,7 @@ resource "time_sleep" "wait_10_seconds" {
 }
 
 resource "kubernetes_manifest" "cluster_secret_store_yandexlockbox" {
-  count = var.cluster_secret_store_yandexlockbox != false ? 1 : 0
+  count = var.cluster_secret_store_yandexlockbox == true ? 1 : 0
   depends_on = [
     kubernetes_namespace.this,
     yandex_iam_service_account.default,
@@ -66,7 +66,7 @@ resource "kubernetes_manifest" "cluster_secret_store_yandexlockbox" {
 }
 
 resource "kubernetes_manifest" "cluster_secret_store_yandexcertificatemanager" {
-  count = var.cluster_secret_store_yandexcertificate != false ? 1 : 0
+  count = var.cluster_secret_store_yandexcertificate == true ? 1 : 0
   depends_on = [
     kubernetes_namespace.this,
     yandex_iam_service_account.default,
